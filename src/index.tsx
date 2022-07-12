@@ -1,15 +1,41 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { BrowserRouter as Router } from "react-router-dom";
+import { Web3ReactProvider } from "@web3-react/core";
+import Web3 from "web3";
+import { Provider } from "react-redux";
+import store from "./store/store";
+import { SnackbarProvider } from "notistack";
+import { ThemeProvider } from "@mui/material/styles";
+import { theme } from "./theme";
+import { CssBaseline } from "@mui/material";
+
+
+
+const getLibrary = (provider: any) => {
+  provider.pollingInterval = 8000;
+  return new Web3(provider);
+};
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+  document.getElementById("root") as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <Router>
+      <Provider store={store}>
+        <Web3ReactProvider getLibrary={getLibrary}>
+          <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <SnackbarProvider maxSnack={3}>
+              <App />
+            </SnackbarProvider>
+          </ThemeProvider>
+        </Web3ReactProvider>
+      </Provider>
+    </Router>
   </React.StrictMode>
 );
 
