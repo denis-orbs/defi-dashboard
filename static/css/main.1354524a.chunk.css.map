@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/components/PieChart/style.css"],"names":[],"mappings":"AAAA,kBACI,SAAU,CACV,QACJ","file":"main.1354524a.chunk.css","sourcesContent":[".custom-tooltip p{\n    padding: 0;\n    margin: 0\n}"]}
